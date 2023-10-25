@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title: {
+      type: #STANDARD,
+      label: 'Travel',
+      value: 'TravelID'
+    }
+  }
+}
+annotate view Z_I_Travel_R_583 with
+{
+  @UI.facet: [ { id:              'Travel',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'Travel',
+                 position:        10 },
+               { id:              'Booking',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Booking',
+                 position:        20,
+                 targetElement:   '_Booking'} ]
+
+  @UI: { lineItem:     [ {  position: 20, label: 'Agency', importance: #HIGH } ],
+   identification:[ { position: 10, label: 'Travel' } ],
+   selectionField: [{position: 20  }] }
+  TravelID;
+  @UI: { lineItem:     [ {  position: 20, label: 'Agency', importance: #HIGH } ],
+       identification: [ { position: 20 } ],
+       selectionField: [{position: 20  }]
+      }
+  @Consumption.valueHelpDefinition: [{  entity: {name: '/DMO/I_Agency', element: 'AgencyID'}  }]
+  AgencyID;
+  @UI           : {
+  lineItem      : [{position: 20, importance: #HIGH}],
+    selectionField: [{ position: 20 }]
+  }
+  @Consumption.valueHelpDefinition: [{entity: {name: '/DMO/I_Customer', element: 'CustomerID' }}]
+  CustomerID;
+  @UI: {  lineItem: [ { position: 40 } ],
+          identification: [ { position: 40 } ],
+          selectionField: [ { position: 40 }]
+        }
+  BeginDate;
+  @UI: {  lineItem: [ { position: 50 } ],
+          identification: [ { position: 50 } ],
+          selectionField: [ { position: 50 }]
+        }
+  EndDate;
+  @UI: { lineItem: [ { position: 60 } ],
+          identification: [ { position: 50 } ]
+         }
+  TotalPrice;
+  @UI           : {
+  lineItem      : [{position: 60, importance: #HIGH}]
+  }
+  Memo;
+  @UI           : {
+    lineItem      : [{position: 60, importance: #HIGH}],
+    selectionField: [{position: 60 }]
+    }
+  Status;
+}
